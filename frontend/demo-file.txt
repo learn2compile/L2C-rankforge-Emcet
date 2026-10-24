@@ -1,0 +1,27 @@
+frontend/src/app/
+├── core/
+│   ├── guards/
+│   │   └── auth.guard.ts
+│   ├── interceptors/
+│   │   └── auth.interceptor.ts
+│   └── services/
+│       └── auth.service.ts
+│
+├── layouts/
+│   └── auth-layout/
+│       ├── auth-layout.ts
+│       ├── auth-layout.html
+│       └── auth-layout.scss
+│
+├── features/
+│   └── auth/
+│       ├── auth.routes.ts
+│       ├── pages/
+│       │   ├── login/
+│       │   └── register/
+│       ├── components/
+│       └── models/
+│           └── auth.models.ts
+│
+├── shared/
+└── app.routes.ts

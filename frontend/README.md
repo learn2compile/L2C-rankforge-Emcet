@@ -1,59 +1,43 @@
-# Frontend
+# RankForge frontend (Angular)
 
-This project was generated using [Angular CLI](https://github.com/angular/angular-cli) version 21.2.26.
+The Angular frontend for the RankForge EAMCET 2027 preparation workspace.
 
-## Development server
+## Requirements
 
-To start a local development server, run:
+- Node.js compatible with the Angular CLI version in `package.json`
+- npm
 
-```bash
-ng serve
-```
-
-Once the server is running, open your browser and navigate to `http://localhost:4200/`. The application will automatically reload whenever you modify any of the source files.
-
-## Code scaffolding
-
-Angular CLI includes powerful code scaffolding tools. To generate a new component, run:
+## Install and run
 
 ```bash
-ng generate component component-name
+npm ci
+npm start
 ```
 
-For a complete list of available schematics (such as `components`, `directives`, or `pipes`), run:
+Angular CLI normally serves the app at `http://localhost:4200`.
+
+## Build
 
 ```bash
-ng generate --help
+npm run build
 ```
 
-## Building
+## Available screens
 
-To build the project run:
+- `/` — responsive RankForge landing page
+- `/auth/login` — email sign-in, Google OAuth entry point, mobile OTP entry point
+- `/auth/register` — create account
+- `/auth/forgot-password` — password recovery request
+- `/auth/reset-password` — choose a new password
+- `/auth/otp` — mobile OTP UI and validation
+- `/auth/verify-email` — email verification preview
+- `/home` — student dashboard and sign-out
+- `/study-plan`, `/subjects`, `/practice`, `/mock-tests`, `/revision`, `/analytics`, `/notifications`, `/profile`, `/settings`, `/help`, `/feedback` — initial workspace screens
 
-```bash
-ng build
-```
+## Preview versus production
 
-This will compile your project and store the build artifacts in the `dist/` directory. By default, the production build optimizes your application for performance and speed.
+The supplied repository did not contain a backend API. Auth screens include validation and demo navigation only. The demo session uses `sessionStorage` so the dashboard/sign-out flow can be previewed; this is not production-grade authentication. Google OAuth, email delivery, SMS OTP delivery, verification tokens and password reset must be connected to trusted backend endpoints and providers before launch. See `../docs/IMPLEMENTATION_STATUS.md`.
 
-## Running unit tests
+## RankForge API integration
 
-To execute unit tests with the [Vitest](https://vitest.dev/) test runner, use the following command:
-
-```bash
-ng test
-```
-
-## Running end-to-end tests
-
-For end-to-end (e2e) testing, run:
-
-```bash
-ng e2e
-```
-
-Angular CLI does not come with an end-to-end testing framework by default. You can choose one that suits your needs.
-
-## Additional Resources
-
-For more information on using the Angular CLI, including detailed command references, visit the [Angular CLI Overview and Command Reference](https://angular.dev/tools/cli) page.
+Authentication now uses the backend API at `http://localhost:4000/api/v1` by default. Configure the origin in `src/app/core/config/api.config.ts` when deploying elsewhere. Student routes use a session-restoration guard and the API client sends credentials with CSRF headers. For backend/database setup, OAuth and message-delivery configuration, see the repository root `README.md` and `backend/README.md`.
