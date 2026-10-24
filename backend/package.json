@@ -1,0 +1,17 @@
+{
+  "name": "rankforge-api",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "engines": { "node": ">=20.11" },
+  "scripts": {
+    "start": "node --env-file=.env src/server.mjs",
+    "dev": "node --env-file=.env --watch src/server.mjs",
+    "db:migrate": "node --env-file=.env src/db/migrate.mjs",
+    "test": "node --test"
+  },
+  "dependencies": {
+    "express": "^5.1.0",
+    "pg": "^8.16.3"
+  }
+}

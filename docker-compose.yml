@@ -1,0 +1,19 @@
+services:
+  postgres:
+    image: postgres:16-alpine
+    restart: unless-stopped
+    environment:
+      POSTGRES_DB: rankforge
+      POSTGRES_USER: rankforge
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:-rankforge_dev_password}
+    ports:
+      - "5432:5432"
+    volumes:
+      - rankforge_pgdata:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U rankforge -d rankforge"]
+      interval: 5s
+      timeout: 5s
+      retries: 10
+volumes:
+  rankforge_pgdata:
